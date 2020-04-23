@@ -28,6 +28,8 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             // get the car controller
             m_Car = GetComponent<CarController>();
+
+           
         }
 
         private void Update()
@@ -66,6 +68,7 @@ namespace UnityStandardAssets.Vehicles.Car
         {
            for(int i=0;i<car_MR.Length;i++)
            {
+                //car_MR[i].material.color = new Color(0f,0f,0f,0f);
                 car_MR[i].material.color = color;
                 
             }

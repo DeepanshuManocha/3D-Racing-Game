@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using Mirror;
+//using CarColorTemp;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -11,8 +12,18 @@ namespace UnityStandardAssets.Vehicles.Car
         private CarController m_Car; // the car controller we want to use
         public Vector3 spawnPointPos;
         private Vector3 startPoint= new Vector3(0,0,0);
-       //[SerializeField] GameObject spawnPoint;
+        //[SerializeField] GameObject spawnPoint;
+        [SerializeField] private MeshRenderer[] car_MR;
 
+
+        private void Start()
+        {
+            if (!isLocalPlayer)
+            {
+                return;
+            }         
+            CmdUpdateColor(CarColor.color);
+        }
         private void Awake()
         {
             // get the car controller
@@ -48,9 +59,24 @@ namespace UnityStandardAssets.Vehicles.Car
 #else
             m_Car.Move(h, v, v, 0f);
 #endif
+        }   
+
+        [ClientRpc]
+        void RpcUpdateColor(Color color)
+        {
+           for(int i=0;i<car_MR.Length;i++)
+           {
+                car_MR[i].material.color = color;
+                
+            }
         }
 
-        
+        [Command]
+        void CmdUpdateColor(Color color)
+        {
+            RpcUpdateColor(color);
+        }
+
         void CmdRespawnVehicle()
         {
             transform.position = spawnPointPos;

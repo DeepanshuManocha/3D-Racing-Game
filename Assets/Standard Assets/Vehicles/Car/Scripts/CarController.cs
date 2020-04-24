@@ -58,6 +58,7 @@ namespace UnityStandardAssets.Vehicles.Car
         // Use this for initialization
         private void Start()
         {
+            
 			if (isLocalPlayer) {
 				this.transform.GetChild (0).gameObject.GetComponent<Camera> ().enabled = true;
 			} else {
@@ -76,6 +77,7 @@ namespace UnityStandardAssets.Vehicles.Car
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
         }
 
+       
 
         private void GearChanging()
         {

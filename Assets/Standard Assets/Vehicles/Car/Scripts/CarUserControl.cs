@@ -18,18 +18,21 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void Start()
         {
+           // AddRigidBodyComponent();
             if (!isLocalPlayer)
             {
                 return;
             }         
             CmdUpdateColor(CarColor.color);
+            
         }
         private void Awake()
         {
             // get the car controller
             m_Car = GetComponent<CarController>();
-
            
+
+
         }
 
         private void Update()
@@ -62,6 +65,8 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Car.Move(h, v, v, 0f);
 #endif
         }   
+
+        
 
         [ClientRpc]
         void RpcUpdateColor(Color color)

@@ -5,9 +5,10 @@ using UnityEngine;
 public class AICarEngine : MonoBehaviour
 {
     public Transform path;
+    public float maxSteerAngle=45f;
     private List<Transform> nodes = new List<Transform>();
     private int currentNode = 0;
-
+    public WheelCollider wheelFL, wheelFR;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,11 @@ public class AICarEngine : MonoBehaviour
     private void ApplySteer()
     {
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
-        print(relativeVector);
+        //print(relativeVector);
+        float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
+        wheelFL.steerAngle = newSteer;
+        wheelFR.steerAngle = newSteer;
+
+
     }
 }

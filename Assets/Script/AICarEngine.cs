@@ -28,7 +28,7 @@ public class AICarEngine : MonoBehaviour
     {
         ApplySteer();
         Drive();
-        Debug.Log(nodes[currentNode]);
+        //Debug.Log(nodes[currentNode]);
         CheckWayPointDistance();
     }
 
@@ -60,11 +60,19 @@ public class AICarEngine : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, nodes[currentNode].position) < minNodeDistance)
         {
-            if(currentNode == nodes.Count - 1)
+            if (currentNode == nodes.Count - 1)
+            {
                 currentNode = 0;
+                //Debug.Log("node:0");
+            }
+
             else
-                currentNode++; 
-            Debug.Log(nodes[currentNode]);
+                currentNode++;
+            //Debug.Log(nodes[currentNode]);
+            
         }
+        Debug.Log(currentNode);
+        //else
+           // Debug.Log(nodes[currentNode]);
     }
 }

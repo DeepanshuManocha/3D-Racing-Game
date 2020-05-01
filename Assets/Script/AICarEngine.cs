@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AICarEngine : MonoBehaviour
 {
-    public Transform path;
+    private GameObject path;
     public float maxSteerAngle, maxMotorTorque, maxSpeed, currentSpeed, minNodeDistance;
     public List<Transform> nodes = new List<Transform>();
     private int currentNode = 0;
@@ -15,7 +15,8 @@ public class AICarEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform[] pathTransform = path.GetComponentsInChildren<Transform>();
+        path = GameObject.FindGameObjectWithTag("Path");
+        Transform[] pathTransform = path.transform.GetComponentsInChildren<Transform>();
         for (int i = 0; i < pathTransform.Length; i++)
         {
             if (pathTransform[i] != path.transform)

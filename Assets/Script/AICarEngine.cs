@@ -44,16 +44,19 @@ public class AICarEngine : MonoBehaviour
 
     void Drive()
     {
-        currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
-        if (currentSpeed < maxSpeed)
+        if(CountDown.currentTime<0)
         {
-            wheelFL.motorTorque = maxMotorTorque;
-            wheelFR.motorTorque = maxMotorTorque;
-        }
-        else
-        {
-            wheelFL.motorTorque = 0;
-            wheelFR.motorTorque = 0;
+            currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000;
+            if (currentSpeed < maxSpeed)
+            {
+                wheelFL.motorTorque = maxMotorTorque;
+                wheelFR.motorTorque = maxMotorTorque;
+            }
+            else
+            {
+                wheelFL.motorTorque = 0;
+                wheelFR.motorTorque = 0;
+            }
         }
     }
 

@@ -19,4 +19,14 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void Win()
+    {
+        SceneManager.LoadScene("Win");
+    }
+
+    public void Lose()
+    {
+        SceneManager.LoadScene("Lose");
+    }
 }
